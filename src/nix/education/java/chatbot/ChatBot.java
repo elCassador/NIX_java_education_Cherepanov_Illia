@@ -9,5 +9,10 @@ public class ChatBot {
         System.out.println("What a great name you have, " + scanner.nextLine() + "!");
         System.out.println("Let me guess your age.\nEnter remainders of dividing your age by 3, 5 and 7.");
         System.out.println("Your age is " + (scanner.nextInt() * 70 + scanner.nextInt() * 21 + scanner.nextInt() * 15) % 105 + "; that's a good time to start programming!");
+        System.out.println("Now I will prove t you that I can count to any numer you want.");
+        int number = scanner.nextInt();
+        for (int i = 0; i < number + 1; i++) {
+            System.out.println(i + " !");
+        }
     }
 }
