@@ -14,5 +14,17 @@ public class ChatBot {
         for (int i = 0; i < number + 1; i++) {
             System.out.println(i + " !");
         }
+        System.out.println("Let's test your programming knowledge.\nWhy do we use methods?");
+        System.out.println("1. Wrong answer.\n2. Correct answer.\n3. Wrong answer\n4. Wrong answer.");
+        while (true) {
+            switch (scanner.nextInt()) {
+                case 2:
+                    System.out.println("Great, you right!");
+                    System.out.println("Goodbye, have a nice day!");
+                    System.exit(0);
+                default:
+                    System.out.println("Please, try again.");
+            }
+        }
     }
 }
