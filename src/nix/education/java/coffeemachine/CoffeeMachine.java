@@ -4,14 +4,19 @@ import java.util.Scanner;
 public class CoffeeMachine {
 
     Scanner scanner = new Scanner(System.in);
-    int oneCoffeeWater = 200;
-    int oneCoffeeMilk = 50;
-    int oneCoffeeBeans = 15;
+    private int oneCoffeeWater = 200;
+    private int oneCoffeeMilk = 50;
+    private int oneCoffeeBeans = 15;
+
+    private int availableCoffeeWater;
+    private int availableCoffeeMilk;
+    private int availableCoffeeBeans;
 
     public static void main(String[] args) {
         CoffeeMachine coffeeMachine = new CoffeeMachine();
-        coffeeMachine.makeCoffee();
-        coffeeMachine.howManyCups();
+//        coffeeMachine.makeCoffee();
+//        coffeeMachine.howManyCups();
+        coffeeMachine.makeCoffeeCups();
     }
 
     public void makeCoffee() {
@@ -30,5 +35,26 @@ public class CoffeeMachine {
                 coffeeCups * oneCoffeeWater + " ml of water\n" +
                 coffeeCups * oneCoffeeMilk + " ml of milk\n" +
                 coffeeCups * oneCoffeeBeans + " g of coffee beans");
+    }
+
+    public void makeCoffeeCups() {
+        System.out.println("Write how many ml of water the coffee machine has: ");
+        availableCoffeeWater = scanner.nextInt();
+        System.out.println("Write how many ml of milk the coffee machine has: ");
+        availableCoffeeMilk = scanner.nextInt();
+        System.out.println("Write how many grams of coffee beans the coffee machine has: ");
+        availableCoffeeBeans = scanner.nextInt();
+        System.out.println("Write how many cups of coffee you will need: ");
+        int coffeeCups = scanner.nextInt();
+        int canMakeCups = Math.min(availableCoffeeWater/oneCoffeeWater, Math.min(availableCoffeeMilk/oneCoffeeMilk, availableCoffeeBeans/oneCoffeeBeans));
+
+        if (coffeeCups == canMakeCups) {
+            System.out.println("Yes, I can make that amount of coffee");
+        } else if (coffeeCups < canMakeCups) {
+            System.out.println("Yes, I can make that amount of coffee (and even "
+            + (canMakeCups - coffeeCups) + " more than that)");
+        } else {
+            System.out.println("No, I can make only " + canMakeCups + " cups of coffee");
+        }
     }
 }
