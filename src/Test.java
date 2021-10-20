@@ -1,7 +1,0 @@
-import nix.education.java.chatbot.ChatBot;
-
-public class Test {
-    public static void main(String[] args) {
-        System.out.println("Java education DICT");
-    }
-}
