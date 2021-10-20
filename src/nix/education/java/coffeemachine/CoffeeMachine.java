@@ -28,7 +28,7 @@ public class CoffeeMachine {
         int coffeeCups = scanner.nextInt();
         System.out.println("For " + coffeeCups + " cups of coffee you will need:\n" +
                 coffeeCups * oneCoffeeWater + " ml of water\n" +
-                coffeeCups * oneCoffeeWater + " ml of milk\n" +
-                coffeeCups * oneCoffeeWater + " g of coffee beans");
+                coffeeCups * oneCoffeeMilk + " ml of milk\n" +
+                coffeeCups * oneCoffeeBeans + " g of coffee beans");
     }
 }
