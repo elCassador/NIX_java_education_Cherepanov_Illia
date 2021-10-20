@@ -28,7 +28,10 @@ public class CoffeeMachine {
 //        coffeeMachine.makeCoffee();
 //        coffeeMachine.howManyCups();
 //        coffeeMachine.makeCoffeeCups();
-        coffeeMachine.input();
+        coffeeMachine.supplies();
+        while (true) {
+            coffeeMachine.input();
+        }
     }
 
     public void makeCoffee() {
@@ -80,24 +83,25 @@ public class CoffeeMachine {
     }
 
     public void input() {
-        supplies();
-        System.out.println("Write action (buy, fill, take): ");
+        System.out.println("(buy, fill, take, remaining, exit):");
         String option = scanner.nextLine();
 
         switch (option) {
             case "buy":
                 System.out.println("What do you want to buy? 1 - espresso, 2 - latte, 3 - cappuccino: ");
                 coffeeTypes(scanner.nextInt());
-                supplies();
                 break;
             case "fill":
                 fill();
-                supplies();
                 break;
             case "take":
                 take();
+                break;
+            case "remaining":
                 supplies();
                 break;
+            case "exit":
+                System.exit(0);
         }
     }
 
@@ -105,22 +109,88 @@ public class CoffeeMachine {
         switch (option) {
             case 1:
                 availableMoney += 4;
-                availableCoffeeWater -= 250;
-                availableCoffeeMilk -= 0;
-                availableCoffeeBeans -= 16;
-                availableCoffeeCups -= 1;
+                if (availableCoffeeWater - 250 < 0) {
+                    System.out.println("Sorry, not enough water!");
+                    break;
+                } else {
+                    availableCoffeeWater -= 250;
+                }
+
+                if (availableCoffeeBeans - 16 < 0) {
+                    System.out.println("Sorry, not enough beans!");
+                    break;
+                } else {
+                    availableCoffeeBeans -= 16;
+                }
+
+                if (availableCoffeeCups - 1 < 0) {
+                    System.out.println("Sorry, not enough cups!");
+                    break;
+                } else {
+                    availableCoffeeCups -= 1;
+                }
+                System.out.println("I have enough resources, making you a coffee!");
+                break;
             case 2:
                 availableMoney += 7;
-                availableCoffeeWater -= 350;
-                availableCoffeeMilk -= 75;
-                availableCoffeeBeans -= 20;
-                availableCoffeeCups -= 1;
+                if (availableCoffeeWater - 350 < 0) {
+                    System.out.println("Sorry, not enough water!");
+                    break;
+                } else {
+                    availableCoffeeWater -= 350;
+                }
+                if (availableCoffeeMilk - 75 < 0) {
+                    System.out.println("Sorry, not enough milk!");
+                    break;
+                } else {
+                    availableCoffeeMilk -= 75;
+                }
+
+                if (availableCoffeeBeans - 20 < 0) {
+                    System.out.println("Sorry, not enough beans!");
+                    break;
+                } else {
+                    availableCoffeeBeans -= 20;
+                }
+
+                if (availableCoffeeCups - 1 < 0) {
+                    System.out.println("Sorry, not enough cups!");
+                    break;
+                } else {
+                    availableCoffeeCups -= 1;
+                }
+                System.out.println("I have enough resources, making you a coffee!");
+                break;
             case 3:
                 availableMoney += 6;
-                availableCoffeeWater -= 200;
-                availableCoffeeMilk -= 100;
-                availableCoffeeBeans -= 12;
-                availableCoffeeCups -= 1;
+                if (availableCoffeeWater - 200 < 0) {
+                    System.out.println("Sorry, not enough water!");
+                    break;
+                } else {
+                    availableCoffeeWater -= 200;
+                }
+                if (availableCoffeeMilk - 100 < 0) {
+                    System.out.println("Sorry, not enough milk!");
+                    break;
+                } else {
+                    availableCoffeeMilk -= 100;
+                }
+
+                if (availableCoffeeBeans - 12 < 0) {
+                    System.out.println("Sorry, not enough beans!");
+                    break;
+                } else {
+                    availableCoffeeBeans -= 12;
+                }
+
+                if (availableCoffeeCups - 1 < 0) {
+                    System.out.println("Sorry, not enough cups!");
+                    break;
+                } else {
+                    availableCoffeeCups -= 1;
+                }
+                System.out.println("I have enough resources, making you a coffee!");
+                break;
         }
     }
 
