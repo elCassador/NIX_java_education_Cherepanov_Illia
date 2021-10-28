@@ -10,8 +10,11 @@ public class hangmanMenu extends Menu{
     @Override
     void start() {
         Hangman hangman = new Hangman();
-        hangman.setWord();
-        hangman.getDestiny();
+        while (true) {
+            hangman.setLetter();
+            hangman.makeDecisions();
+        }
+
     }
 
     @Override
