@@ -2,6 +2,8 @@ package nix.education.java.hangman;
 
 public class hangmanMenu extends Menu{
 
+
+
     @Override
     void greetings() {
         System.out.println("HANGMAN");
@@ -11,8 +13,9 @@ public class hangmanMenu extends Menu{
     void start() {
         Hangman hangman = new Hangman();
         while (true) {
-            hangman.setLetter();
-            hangman.makeDecisions();
+            String enterdLetter = hangman.setLetter();
+            boolean isLetter = hangman.letterCheck(enterdLetter);
+            if (isLetter == true) {hangman.makeDecisions();}
         }
 
     }
