@@ -53,15 +53,17 @@ final class Hangman {
     }
 
     // Определение "судьбы" игрока в зависимости от количества попыток
-    private void getDestiny() {
+    public boolean getDestiny() {
         if (guessedLetters == length && attemptLeft > 1) {
             System.out.println("You guessed the word!\n" +
                     "You survived!");
-            System.exit(0);
+            return false;
         }
         else if (attemptLeft == 0) {
             System.out.println("You lost!");
-            System.exit(0);
+            return false;
+        } else {
+            return true;
         }
     }
 
