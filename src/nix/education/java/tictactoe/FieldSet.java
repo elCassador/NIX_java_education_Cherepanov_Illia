@@ -1,10 +1,8 @@
 package nix.education.java.tictactoe;
 
-public class FieldFill {
+public class FieldSet {
 
-    final int WRONG_CHARACTER_CODE = 1;
-    final int WRONG_LENGTH_CODE = 2;
-    final int WRONG_INPUT_TYPE = 3;
+    TicTacToeVariables ticTacToeVariables = new TicTacToeVariables();
 
     private final boolean checkInputSymbols(char SYMBOL) {
         if (SYMBOL == '0' || SYMBOL == 'O' || SYMBOL == 'X' || SYMBOL == '_') {
@@ -25,10 +23,10 @@ public class FieldFill {
     }
 
     private void errorMssagesOutput(int ERROR_CODE) {
-        if (ERROR_CODE == WRONG_CHARACTER_CODE) {
+        if (ERROR_CODE == ticTacToeVariables.WRONG_CHARACTER_CODE) {
             System.out.println("Недопустимый символ!");
         }
-        else if (ERROR_CODE == WRONG_LENGTH_CODE) {
+        else if (ERROR_CODE == ticTacToeVariables.WRONG_LENGTH_CODE) {
             System.out.println("Недопустимая длина строки!");
         }
     }
@@ -43,13 +41,13 @@ public class FieldFill {
                         counter += 1;
                     }
                     else {
-                        errorMssagesOutput(WRONG_CHARACTER_CODE);
+                        errorMssagesOutput(ticTacToeVariables.WRONG_CHARACTER_CODE);
                     }
                 }
             }
         }
         else {
-            errorMssagesOutput(WRONG_LENGTH_CODE);
+            errorMssagesOutput(ticTacToeVariables.WRONG_LENGTH_CODE);
         }
     }
 

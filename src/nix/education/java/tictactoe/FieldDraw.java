@@ -2,12 +2,9 @@ package nix.education.java.tictactoe;
 import java.util.Scanner;
 
 
-abstract class gameField {
+abstract class FieldDraw {
 
-    final int ADDITIONAL_HORIZONTAL_FRAME_LENGTH = 2;
-    final int ADDITIONAL_VERTICAL_FRAME_LENGTH = 6;
-    private int WRONG_CHARACTER_CODE = 1;
-    private int WRONG_LENGTH_CODE = 2;
+    TicTacToeVariables ticTacToeVariables = new TicTacToeVariables();
 
     public char[][] makeGameField(int x, int y) {
         char[][] gameField = new char[x][y];
@@ -33,10 +30,10 @@ abstract class gameField {
     }
 
     private void errorMssagesOutput(int ERROR_CODE) {
-        if (ERROR_CODE == WRONG_CHARACTER_CODE) {
+        if (ERROR_CODE == ticTacToeVariables.WRONG_CHARACTER_CODE) {
             System.out.println("Недопустимый символ!");
         }
-        else if (ERROR_CODE == WRONG_LENGTH_CODE) {
+        else if (ERROR_CODE == ticTacToeVariables.WRONG_LENGTH_CODE) {
             System.out.println("Недопустимая длина строки!");
         }
         System.exit(1);
@@ -60,8 +57,8 @@ abstract class gameField {
     }
 
     public void drawGameField(char[][] gameField) {
-        int LENGTH_X = gameField.length + ADDITIONAL_HORIZONTAL_FRAME_LENGTH;
-        int LENGTH_Y = gameField[0].length + ADDITIONAL_VERTICAL_FRAME_LENGTH;
+        int LENGTH_X = gameField.length + ticTacToeVariables.ADDITIONAL_HORIZONTAL_FRAME_LENGTH;
+        int LENGTH_Y = gameField[0].length + ticTacToeVariables.ADDITIONAL_VERTICAL_FRAME_LENGTH;
         for (int x = 0; x < LENGTH_X; x++) {
             for (int y = 0; y < LENGTH_Y; y++) {
                 if (x == 0 || x == LENGTH_X - 1) {

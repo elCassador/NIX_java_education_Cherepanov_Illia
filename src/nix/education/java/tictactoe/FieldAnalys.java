@@ -1,8 +1,5 @@
 package nix.education.java.tictactoe;
 
-import java.util.ArrayList;
-import java.util.List;
-
 interface FieldAnalys {
 
     void horizontalCheckGameFieldState();
