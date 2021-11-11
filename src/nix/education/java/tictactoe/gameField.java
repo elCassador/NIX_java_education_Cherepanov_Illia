@@ -2,8 +2,7 @@ package nix.education.java.tictactoe;
 import java.util.Scanner;
 
 
-abstract class Game {
-
+abstract class gameField {
 
     final int ADDITIONAL_HORIZONTAL_FRAME_LENGTH = 2;
     final int ADDITIONAL_VERTICAL_FRAME_LENGTH = 6;
@@ -99,5 +98,13 @@ abstract class Game {
                 }
             }
         }
+    }
+
+    public int getHorizontalLength(char[][] GAME_FIELD) {
+        return GAME_FIELD.length;
+    }
+
+    public int getVerticalLength(char[][] GAME_FIELD) {
+        return GAME_FIELD[0].length;
     }
 }
