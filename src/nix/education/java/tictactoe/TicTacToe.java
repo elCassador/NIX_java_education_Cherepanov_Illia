@@ -8,6 +8,7 @@ public class TicTacToe extends gameField implements FieldAnalys{
     protected char[][] GAME_FIELD = makeGameField(3, 3);
     private int FIELD_HORIZONTAL_LENGTH = getHorizontalLength(GAME_FIELD);
     private int FIELD_VERTICAL_LENGTH = getVerticalLength(GAME_FIELD);
+    private int MAX_POSSIBLE_TURNS = 9;
     final char X_SYMBOL = 'X';
     final char O_SYMBOL = 'O';
     final int X_TURN = 0;
@@ -28,36 +29,37 @@ public class TicTacToe extends gameField implements FieldAnalys{
         TicTacToe ticTacToe = new TicTacToe();
         FieldFill fieldFill = new FieldFill();
         Scanner scanner = new Scanner(System.in);
-        ticTacToe.drawGameField(ticTacToe.GAME_FIELD);
-        System.out.print("Enter cells: ");
-        String INPUT_STRING = scanner.nextLine();
+        String INPUT_STRING = "_________";
         fieldFill.setTheSymbols(INPUT_STRING, ticTacToe.GAME_FIELD, ticTacToe.FIELD_HORIZONTAL_LENGTH, ticTacToe.FIELD_VERTICAL_LENGTH);
         ticTacToe.drawGameField(ticTacToe.GAME_FIELD);
         int TURN = ticTacToe.X_TURN;
         char SYMBOL = ticTacToe.X_SYMBOL;
-
-        while (true) {
+        int TURN_IS_MAKED = 0;
+        while (TURN_IS_MAKED != ticTacToe.MAX_POSSIBLE_TURNS) {
             System.out.print("Enter the coordinates: ");
             if (TURN == 2) {
                 TURN = ticTacToe.X_TURN;
                 SYMBOL = ticTacToe.X_SYMBOL;
             }
             char INPUT_COORDINATES_X = scanner.next().charAt(0);
-            char INPUT_COORDINATES_Y = scanner.next().charAt(0);
-            if (Character.isDigit(INPUT_COORDINATES_X) && Character.isDigit(INPUT_COORDINATES_Y)) {
-                if (ticTacToe.isEmpty(Character.getNumericValue(INPUT_COORDINATES_X) - 1, Character.getNumericValue(INPUT_COORDINATES_Y) - 1)) {
-                    fieldFill.setTheSymbol(INPUT_COORDINATES_X, INPUT_COORDINATES_Y, ticTacToe.GAME_FIELD, SYMBOL);
-                    ticTacToe.drawGameField(ticTacToe.GAME_FIELD);
-                    ticTacToe.horizontalCheckGameFieldState();
-                    ticTacToe.verticalCheckGameFieldState();
-                    ticTacToe.diagonalCheckGameFieldState();
-                    TURN += 1;
-                    SYMBOL = ticTacToe.O_SYMBOL;
+            if (Character.isDigit(INPUT_COORDINATES_X)) {
+                char INPUT_COORDINATES_Y = scanner.next().charAt(0);
+                if (Character.isDigit(INPUT_COORDINATES_Y)) {
+                    if (ticTacToe.isEmpty(Character.getNumericValue(INPUT_COORDINATES_X) - 1, Character.getNumericValue(INPUT_COORDINATES_Y) - 1)) {
+                        fieldFill.setTheSymbol(INPUT_COORDINATES_X, INPUT_COORDINATES_Y, ticTacToe.GAME_FIELD, SYMBOL);
+                        ticTacToe.drawGameField(ticTacToe.GAME_FIELD);
+                        ticTacToe.horizontalCheckGameFieldState();
+                        ticTacToe.verticalCheckGameFieldState();
+                        ticTacToe.diagonalCheckGameFieldState();
+                        TURN += 1;
+                        TURN_IS_MAKED += 1;
+                        SYMBOL = ticTacToe.O_SYMBOL;
+                    }
+                } else {
+                    ticTacToe.printGameResultMessage(ticTacToe.WRONG_INPUT_TYPE);
                 }
             }
-            else {
-                ticTacToe.printGameResultMessage(ticTacToe.WRONG_INPUT_TYPE);
-            }
+            ticTacToe.printGameResultMessage(ticTacToe.DRAW);
         }
     }
 

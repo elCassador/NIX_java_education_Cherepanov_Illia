@@ -31,7 +31,6 @@ public class FieldFill {
         else if (ERROR_CODE == WRONG_LENGTH_CODE) {
             System.out.println("Недопустимая длина строки!");
         }
-//        System.exit(1);
     }
 
     public void setTheSymbols(String INPUT_STRING, char[][] gameField, int VERTICAL_LENGTH, int HORIZONTAL_LENGTH) {
@@ -55,11 +54,6 @@ public class FieldFill {
     }
 
     public void setTheSymbol(char x, char y, char[][] GAME_FIELD, char SYMBOL) {
-        if (Character.isDigit(x) && Character.isDigit((y))) {
-            GAME_FIELD[Character.getNumericValue(x) - 1][Character.getNumericValue(y) - 1] = SYMBOL;
-        }
-        else {
-            errorMssagesOutput(WRONG_INPUT_TYPE);
-        }
+        GAME_FIELD[x - 1][y - 1] = SYMBOL;
     }
 }
