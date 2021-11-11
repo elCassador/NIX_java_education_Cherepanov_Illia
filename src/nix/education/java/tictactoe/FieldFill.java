@@ -2,8 +2,9 @@ package nix.education.java.tictactoe;
 
 public class FieldFill {
 
-    private int WRONG_CHARACTER_CODE = 1;
-    private int WRONG_LENGTH_CODE = 2;
+    final int WRONG_CHARACTER_CODE = 1;
+    final int WRONG_LENGTH_CODE = 2;
+    final int WRONG_INPUT_TYPE = 3;
 
     private final boolean checkInputSymbols(char SYMBOL) {
         if (SYMBOL == '0' || SYMBOL == 'O' || SYMBOL == 'X' || SYMBOL == '_') {
@@ -30,7 +31,7 @@ public class FieldFill {
         else if (ERROR_CODE == WRONG_LENGTH_CODE) {
             System.out.println("Недопустимая длина строки!");
         }
-        System.exit(1);
+//        System.exit(1);
     }
 
     public void setTheSymbols(String INPUT_STRING, char[][] gameField, int VERTICAL_LENGTH, int HORIZONTAL_LENGTH) {
@@ -50,6 +51,15 @@ public class FieldFill {
         }
         else {
             errorMssagesOutput(WRONG_LENGTH_CODE);
+        }
+    }
+
+    public void setTheSymbol(char x, char y, char[][] GAME_FIELD, char SYMBOL) {
+        if (Character.isDigit(x) && Character.isDigit((y))) {
+            GAME_FIELD[Character.getNumericValue(x) - 1][Character.getNumericValue(y) - 1] = SYMBOL;
+        }
+        else {
+            errorMssagesOutput(WRONG_INPUT_TYPE);
         }
     }
 }

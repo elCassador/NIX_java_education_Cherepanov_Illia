@@ -8,27 +8,57 @@ public class TicTacToe extends gameField implements FieldAnalys{
     protected char[][] GAME_FIELD = makeGameField(3, 3);
     private int FIELD_HORIZONTAL_LENGTH = getHorizontalLength(GAME_FIELD);
     private int FIELD_VERTICAL_LENGTH = getVerticalLength(GAME_FIELD);
+    final char X_SYMBOL = 'X';
+    final char O_SYMBOL = 'O';
+    final int X_TURN = 0;
+    final int O_TURN = 1;
     final int CHAR_PER_LINE = 3;
     final int GAME_NOT_FINISHED = 1;
     final int DRAW = 2;
     final int X_WINS = 3;
     final int O_WINS = 4;
     final int IMPOSSIBLE = 5;
+    final int CELL_IS_OCCUPIED = 6;
+    final int WRONG_INPUT_TYPE = 7;
 
     final char[] O_EXAMPLE = {'O', 'O', 'O'};
     final char[] X_EXAMPLE = {'X', 'X', 'X'};
 
     public static void main(String[] args) {
         TicTacToe ticTacToe = new TicTacToe();
+        FieldFill fieldFill = new FieldFill();
         Scanner scanner = new Scanner(System.in);
         ticTacToe.drawGameField(ticTacToe.GAME_FIELD);
         System.out.print("Enter cells: ");
         String INPUT_STRING = scanner.nextLine();
-        ticTacToe.setTheSymbols(INPUT_STRING, ticTacToe.GAME_FIELD, ticTacToe.FIELD_HORIZONTAL_LENGTH, ticTacToe.FIELD_VERTICAL_LENGTH);
+        fieldFill.setTheSymbols(INPUT_STRING, ticTacToe.GAME_FIELD, ticTacToe.FIELD_HORIZONTAL_LENGTH, ticTacToe.FIELD_VERTICAL_LENGTH);
         ticTacToe.drawGameField(ticTacToe.GAME_FIELD);
-        ticTacToe.horizontalCheckGameFieldState();
-        ticTacToe.verticalCheckGameFieldState();
-        ticTacToe.diagonalCheckGameFieldState();
+        int TURN = ticTacToe.X_TURN;
+        char SYMBOL = ticTacToe.X_SYMBOL;
+
+        while (true) {
+            System.out.print("Enter the coordinates: ");
+            if (TURN == 2) {
+                TURN = ticTacToe.X_TURN;
+                SYMBOL = ticTacToe.X_SYMBOL;
+            }
+            char INPUT_COORDINATES_X = scanner.next().charAt(0);
+            char INPUT_COORDINATES_Y = scanner.next().charAt(0);
+            if (Character.isDigit(INPUT_COORDINATES_X) && Character.isDigit(INPUT_COORDINATES_Y)) {
+                if (ticTacToe.isEmpty(Character.getNumericValue(INPUT_COORDINATES_X) - 1, Character.getNumericValue(INPUT_COORDINATES_Y) - 1)) {
+                    fieldFill.setTheSymbol(INPUT_COORDINATES_X, INPUT_COORDINATES_Y, ticTacToe.GAME_FIELD, SYMBOL);
+                    ticTacToe.drawGameField(ticTacToe.GAME_FIELD);
+                    ticTacToe.horizontalCheckGameFieldState();
+                    ticTacToe.verticalCheckGameFieldState();
+                    ticTacToe.diagonalCheckGameFieldState();
+                    TURN += 1;
+                    SYMBOL = ticTacToe.O_SYMBOL;
+                }
+            }
+            else {
+                ticTacToe.printGameResultMessage(ticTacToe.WRONG_INPUT_TYPE);
+            }
+        }
     }
 
     @Override
@@ -91,16 +121,36 @@ public class TicTacToe extends gameField implements FieldAnalys{
         }
         else if (END_GAME_CODE == DRAW) {
             System.out.println("Draw");
+            System.exit(0);
         }
         else if (END_GAME_CODE == X_WINS) {
             System.out.printf("X wins");
+            System.exit(0);
         }
         else if (END_GAME_CODE == O_WINS) {
             System.out.printf("O wins");
+            System.exit(0);
         }
         else if (END_GAME_CODE == IMPOSSIBLE) {
             System.out.printf("Impossible");
+            System.exit(0);
+        }
+        else if (END_GAME_CODE == CELL_IS_OCCUPIED) {
+            System.out.println("Cell is occupied");
+        }
+        else if (END_GAME_CODE == WRONG_INPUT_TYPE) {
+            System.out.println("You should enter numbers!");
         }
     }
 
+    @Override
+    public boolean isEmpty(int x, int y) {
+        if (GAME_FIELD[x][y] == '_' || GAME_FIELD == null) {
+            return true;
+        }
+        else {
+            printGameResultMessage(CELL_IS_OCCUPIED);
+            return false;
+        }
+    }
 }

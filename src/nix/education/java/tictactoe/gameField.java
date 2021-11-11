@@ -42,26 +42,6 @@ abstract class gameField {
         System.exit(1);
     }
 
-    public void setTheSymbols(String INPUT_STRING, char[][] gameField, int VERTICAL_LENGTH, int HORIZONTAL_LENGTH) {
-        int counter = 0;
-        if (checkInputLength(gameField, INPUT_STRING)) {
-            for (int x = 0; x < HORIZONTAL_LENGTH; x++ ) {
-                for (int y = 0; y < VERTICAL_LENGTH; y++ ) {
-                    if (checkInputSymbols(INPUT_STRING.charAt(counter))) {
-                        gameField[x][y] = INPUT_STRING.charAt(counter);
-                        counter += 1;
-                    }
-                    else {
-                        errorMssagesOutput(WRONG_CHARACTER_CODE);
-                    }
-                }
-            }
-        }
-        else {
-            errorMssagesOutput(WRONG_LENGTH_CODE);
-        }
-    }
-
     private final void drawHorizontalFrame(int y, int LENGTH_Y) {
         if (y < LENGTH_Y - 1) {
             System.out.print('-');
