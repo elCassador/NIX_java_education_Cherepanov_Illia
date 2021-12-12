@@ -1,0 +1,4 @@
+public interface ChooseOption {
+
+    public boolean setOption(int operation);
+}
